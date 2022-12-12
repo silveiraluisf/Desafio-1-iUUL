@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Agenda_Consultorio_Odontologico.view
+﻿namespace Agenda_Consultorio_Odontologico.view
 {
     public class MainMenuInterface
     {
@@ -24,7 +18,7 @@ namespace Agenda_Consultorio_Odontologico.view
         }
         public void ErrorMessage() 
         { 
-            Console.WriteLine("Favor insira uma opção válida."); 
+            Console.WriteLine("Favor insira uma opção válida. \n"); 
         }
     }
 }
