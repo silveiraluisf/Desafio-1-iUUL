@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Agenda_Consultorio_Odontologico.controller;
+
+namespace Agenda_Consultorio_Odontologico
+{
+    class Program
+    {
+        static public void Main()
+        {
+            SystemController s = new SystemController();
+            s.OpenInterface();
+        }
+    }
+}
