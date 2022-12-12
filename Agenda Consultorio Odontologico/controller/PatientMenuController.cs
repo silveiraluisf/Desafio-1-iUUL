@@ -4,7 +4,6 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class PatientMenuController
     {
-        //MainMenuController m = new();
         PatientMenuInterface p = new();
         public void OpenInterface()
         {
