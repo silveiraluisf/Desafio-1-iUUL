@@ -4,23 +4,26 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class PatientMenuController
     {
-        PatientMenuInterface p = new();
+        PatientMenuInterface pmi = new();
+        PatientRegistrationInterface pri = new();
+        PatientRegistrationController prc = new();
         public void OpenInterface()
         {
-            p.PatientMenu();
+            pmi.PatientMenu();
             Options();
         }
 
         public void Options()
         {
-            string inputOption = p.InputOption;
+            string inputOption = pmi.InputOption;
             bool parseSuccess = int.TryParse(inputOption, out int value);
             if (parseSuccess)
             {
                 switch (value)
                 {
                     case 1:
-                        System.Environment.Exit(0);
+                        prc.AddPatient(pri);
+                        pmi.PatientMenu();
                         break;
                     case 2:
                         System.Environment.Exit(0);
@@ -36,15 +39,15 @@ namespace Agenda_Consultorio_Odontologico.controller
                         m.OpenInterface();
                         break;
                     default:
-                        p.ErrorMessage();
-                        p.PatientMenu();
+                        pmi.ErrorMessage();
+                        pmi.PatientMenu();
                         break;
                 }
             }
             else
             {
-                p.ErrorMessage();
-                p.PatientMenu();
+                pmi.ErrorMessage();
+                pmi.PatientMenu();
             }
 
         }

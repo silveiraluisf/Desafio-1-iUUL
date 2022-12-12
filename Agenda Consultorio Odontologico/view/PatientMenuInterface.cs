@@ -1,4 +1,6 @@
-﻿namespace Agenda_Consultorio_Odontologico.view
+﻿using Agenda_Consultorio_Odontologico.model;
+
+namespace Agenda_Consultorio_Odontologico.view
 {
     public class PatientMenuInterface
     {
@@ -10,7 +12,7 @@
         }
         public void PatientMenu()
         {
-            Console.WriteLine("Menu do Cadastro de Pacientes");
+            Console.WriteLine("Menu de Cadastro de Pacientes");
             Console.WriteLine("1- Cadastrar novo paciente");
             Console.WriteLine("2- Excluir paciente");
             Console.WriteLine("3- Listar pacientes (ordenados por CPF)");
@@ -21,6 +23,6 @@
         public void ErrorMessage()
         {
             Console.WriteLine("Favor insira uma opção válida.");
-        }
+        }       
     }
 }
