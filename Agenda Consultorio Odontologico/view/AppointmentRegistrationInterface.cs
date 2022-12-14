@@ -55,10 +55,9 @@
             Console.WriteLine($"--------------------------------------------");
             Console.WriteLine($"CPF: {this.InputPatientCPF}");
             Console.WriteLine($"Data da consulta: {this.InputDate}");
-            Console.WriteLine($"Hora inicial: {this.InputStart} \n");
+            Console.WriteLine($"Hora inicial: {this.InputStart}");
             Console.WriteLine($"Hora final: {this.InputEnd} \n");
             Console.WriteLine("Agendamento realizado com sucesso!\n");
-
         }
     }
 }

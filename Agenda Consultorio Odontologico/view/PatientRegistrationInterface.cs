@@ -55,7 +55,6 @@ namespace Agenda_Consultorio_Odontologico.view
             Console.WriteLine($"Nome: {this.InputName}");
             Console.WriteLine($"Data de nascimento: {this.InputDate} \n");
             Console.WriteLine("Paciente cadastrado com sucesso!\n");
-
         }
         public void ErrorMessages(int n)
         {

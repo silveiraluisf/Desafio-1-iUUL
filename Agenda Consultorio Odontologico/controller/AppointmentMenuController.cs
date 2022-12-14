@@ -4,23 +4,25 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class AppointmentMenuController
     {
-        AppointmentMenuInterface a = new();
+        AppointmentMenuInterface ami = new();
+        AppointmentRegistrationInterface ari = new();
+        AppointmentRegistrationController arc = new();
         public void OpenInterface()
         {
-            a.AppointmentMenu();
+            ami.AppointmentMenu();
             Options();
         }
 
         public void Options()
         {
-            string inputOption = a.InputOption;
+            string inputOption = ami.InputOption;
             bool parseSuccess = int.TryParse(inputOption, out int value);
             if (parseSuccess)
             {
                 switch (value)
                 {
                     case 1:
-                        System.Environment.Exit(0);
+                        arc.AddAppointment(ari);
                         break;
                     case 2:
                         System.Environment.Exit(0);
@@ -33,15 +35,15 @@ namespace Agenda_Consultorio_Odontologico.controller
                         m.OpenInterface();
                         break;
                     default:
-                        a.ErrorMessage();
-                        a.AppointmentMenu();
+                        ami.ErrorMessage();
+                        ami.AppointmentMenu();
                         break;
                 }
             }
             else
             {
-                a.ErrorMessage();
-                a.AppointmentMenu();
+                ami.ErrorMessage();
+                ami.AppointmentMenu();
             }
 
         }

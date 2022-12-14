@@ -12,7 +12,6 @@ namespace Agenda_Consultorio_Odontologico.controller
             pmi.PatientMenu();
             Options();
         }
-
         public void Options()
         {
             string inputOption = pmi.InputOption;
