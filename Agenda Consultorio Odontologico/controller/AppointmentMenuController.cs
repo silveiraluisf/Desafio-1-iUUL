@@ -15,6 +15,7 @@ namespace Agenda_Consultorio_Odontologico.controller
 
         public void Options()
         {
+            MainMenuController m = new();
             string inputOption = ami.InputOption;
             bool parseSuccess = int.TryParse(inputOption, out int value);
             if (parseSuccess)
@@ -22,7 +23,8 @@ namespace Agenda_Consultorio_Odontologico.controller
                 switch (value)
                 {
                     case 1:
-                        arc.AddAppointment(ari);
+                        arc.AddAppointment(ari);                       
+                        m.OpenInterface();
                         break;
                     case 2:
                         System.Environment.Exit(0);
@@ -30,8 +32,7 @@ namespace Agenda_Consultorio_Odontologico.controller
                     case 3:
                         System.Environment.Exit(0);
                         break;
-                    case 4:
-                        MainMenuController m = new();
+                    case 4:                       
                         m.OpenInterface();
                         break;
                     default:

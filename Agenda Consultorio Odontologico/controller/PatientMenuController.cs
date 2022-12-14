@@ -14,6 +14,7 @@ namespace Agenda_Consultorio_Odontologico.controller
         }
         public void Options()
         {
+            MainMenuController m = new();
             string inputOption = pmi.InputOption;
             bool parseSuccess = int.TryParse(inputOption, out int value);
             if (parseSuccess)
@@ -22,7 +23,7 @@ namespace Agenda_Consultorio_Odontologico.controller
                 {
                     case 1:
                         prc.AddPatient(pri);
-                        pmi.PatientMenu();
+                        m.OpenInterface();
                         break;
                     case 2:
                         System.Environment.Exit(0);
@@ -33,8 +34,7 @@ namespace Agenda_Consultorio_Odontologico.controller
                     case 4:
                         System.Environment.Exit(0);
                         break;
-                    case 5:
-                        MainMenuController m = new();
+                    case 5:                        
                         m.OpenInterface();
                         break;
                     default:
