@@ -33,18 +33,14 @@ namespace Agenda_Consultorio_Odontologico.view
         {
             Console.WriteLine("Cadastro do paciente \n");
         }
-        public void GetName()
+        public void GetInformation()
         {
             Console.WriteLine("Insira o nome do cliente: ");
             this._inputName = Console.ReadLine();
-        }
-        public void GetCPF()
-        {
+
             Console.WriteLine("Insira o CPF: ");
             this._inputCPF = Console.ReadLine();
-        }
-        public void GetDate()
-        {
+
             Console.WriteLine("Insira da data de nascimento (dd/mm/aaaa): ");
             this._inputDate = Console.ReadLine();
         }

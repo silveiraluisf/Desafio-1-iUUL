@@ -5,36 +5,31 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class PatientRegistrationController
     {
-        public void AddPatient(PatientRegistrationInterface a)
+        public void AddPatient(PatientRegistrationInterface pri)
         {
-            a.GetName();
-            a.GetCPF();
-            a.GetDate();
-            a.ShowData();
+            pri.GetInformation();
+            pri.ShowData();       
         }
-        public void PatientValidator(PatientRegistrationInterface a, Patient p)
+        public void PatientValidator(PatientRegistrationInterface pri, PatientListController plc,  PatientList pl, Patient p)
         {
-            NameValidate(a, p);
-            CPFValidate(a, p);
-            BirthDateValidate(a, p);
+            NameValidate(pri, p);
+            CPFValidate(pri, p);
+            BirthDateValidate(pri, p);
+            plc.AddPatientToList(pl, p);
         }
-        public void NameValidate(PatientRegistrationInterface a, Patient c)
+        public void NameValidate(PatientRegistrationInterface a, Patient p)
         {
             string name = a.InputName;
             switch (name.Length)
             {
                 case 0:
                     a.ErrorMessages(0);
-                    a.GetName();
-                    NameValidate(a, c);
                     break;
                 case < 5:
                     a.ErrorMessages(1);
-                    a.GetName();
-                    NameValidate(a, c);
                     break;
                 case >= 5:
-                    c.Name = name;
+                    p.Name = name;
                     break;
             }
         }
@@ -53,13 +48,11 @@ namespace Agenda_Consultorio_Odontologico.controller
                     else
                     {
                         a.ErrorMessages(2);
-                        a.GetCPF();
                         CPFValidate(a, c);
                     }
                     break;
                 default:
                     a.ErrorMessages(2);
-                    a.GetCPF();
                     CPFValidate(a, c);
                     break;
             }
