@@ -2,27 +2,20 @@
 {
     public class Appointment
     {
-        private DateTime _Date;
-        private int _start;
-        private int _end;
-        private Patient _patient;
-        public DateTime Date
+        private static List<Appointment> _appointmentList = new List<Appointment>();
+        public DateTime Date { get; set; }
+
+        public int Start { get; set; }
+        public int End { get; set; }
+        public Patient? Patient { get; set; }
+        public static List<Appointment> AppointmentList { get { return _appointmentList; } set { _appointmentList = value; } }
+        public Appointment(DateTime date, int start, int end, Patient? patient)
         {
-            get { return _Date; }
-            set { _Date = value; }
+            Date = date;
+            Start = start;
+            End = end;
+            Patient = patient;
+            _appointmentList.Add(this);
         }
-        public int Start
-        {
-            get { return _start; }
-            set { _start = value; }
-        }
-        public int End
-        { 
-            get { return _end; } 
-            set { _end = value; } 
-        }
-        public Patient Patient { 
-            get { return this._patient; }
-        }
-    }    
+    }
 }

@@ -5,22 +5,34 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class PatientRegistrationController
     {
-        public void AddPatient(PatientRegistrationInterface pri)
+        PatientRegistrationInterface pri = new();
+        string name;
+        long cpf;
+        DateTime bd;
+        public void AddPatient()
         {
             pri.GetInformation();
-            pri.ShowData();       
+            pri.ShowData();
+            PatientValidator();
+            Patient patient = new(this.name , this.cpf, this.bd);
+            Console.Write($"Teste 1 = {patient.Name} | {patient.CPF} | {patient.BirthDate}\n");                                  
         }
-        public void PatientValidator(PatientRegistrationInterface pri, PatientListController plc,  PatientList pl, Patient p)
+        public void PatientValidator()
         {
-            NameValidate(pri, p);
-            CPFValidate(pri, p);
-            BirthDateValidate(pri, p);
-            plc.AddPatientToList(pl, p);
+            NameValidate(pri);
+            CPFValidate(pri);
+            BirthDateValidate(pri);
         }
-        public void NameValidate(PatientRegistrationInterface a, Patient p)
+        public void PrintPatientsList()
         {
-            string name = a.InputName;
-            switch (name.Length)
+            foreach (Patient pat in Patient.PatientList)
+            {
+                Console.Write($"Teste 2 = {pat.Name}\n");
+            }
+        }
+        public void NameValidate(PatientRegistrationInterface a)
+        {
+            switch (a.InputName.Length)
             {
                 case 0:
                     a.ErrorMessages(0);
@@ -29,130 +41,108 @@ namespace Agenda_Consultorio_Odontologico.controller
                     a.ErrorMessages(1);
                     break;
                 case >= 5:
-                    p.Name = name;
+                    this.name = a.InputName;
+                    //NameValidated(name);
+
                     break;
             }
         }
-        public void CPFValidate(PatientRegistrationInterface a, Patient c)
+        public void CPFValidate(PatientRegistrationInterface a)
         {
             string inputCPF = a.InputCPF;
-            long outputCPF;
             switch (inputCPF.Length)
             {
                 case 11:
-                    bool parseSuccess = long.TryParse(inputCPF, out outputCPF);
+                    bool parseSuccess = long.TryParse(inputCPF, out long outputCPF);
                     if (parseSuccess)
                     {
-                        CPFValidateAllSameNumber(a, c, outputCPF);
+                        CPFValidateAllSameNumber(a, outputCPF);
                     }
                     else
                     {
                         a.ErrorMessages(2);
-                        CPFValidate(a, c);
+                        CPFValidate(a);
                     }
                     break;
                 default:
                     a.ErrorMessages(2);
-                    CPFValidate(a, c);
+                    CPFValidate(a);
                     break;
             }
         }
-        public void CPFValidateAllSameNumber(PatientRegistrationInterface a, Patient c, long outputCPF)
+        public void CPFValidateAllSameNumber(PatientRegistrationInterface a, long outputCPF)
         {
             switch (outputCPF)
             {
                 case 11111111111:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 22222222222:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 33333333333:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 44444444444:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 55555555555:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 66666666666:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 77777777777:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 88888888888:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 case 99999999999:
                     a.ErrorMessages(2);
-                    a.GetCPF();
-                    CPFValidate(a, c);
+                    //CPFValidate(a, c);
                     break;
                 default:
-                    CPFValidateVerificatorNumbers(c, outputCPF);
+                    //CPFValidateVerificatorNumbers(c, outputCPF);
+                    //CPFValidated(outputCPF);
+                    this.cpf = outputCPF;
                     break;
             }
         }
-        public void CPFValidateVerificatorNumbers(Patient c, long outputCPF)
-        {
-            string DigitsCPF = outputCPF.ToString("0000000000");
-            Console.WriteLine(outputCPF);
-            int[] listOfDigits = Array.Empty<int>();
-            for (int i = 0; i <= 10; i++)
-            {
-                string d = DigitsCPF.Substring(i, 1);
-                int.TryParse(d, out int n);
-                listOfDigits.Append(n);
-                Console.WriteLine($"teste2 {n}");
-            }
-            c.CPF = outputCPF;
-        }
-        public void BirthDateValidate(PatientRegistrationInterface a, Patient c)
+        public void BirthDateValidate(PatientRegistrationInterface a)
         {
             string inputDate = a.InputDate;
-            DateTime outputDate;
             DateTime now = DateTime.Now;
             TimeSpan eighteenYears = new TimeSpan(6574, 0, 0, 0);
-            bool parseSuccess = DateTime.TryParse(inputDate, out outputDate);
+            bool parseSuccess = DateTime.TryParse(inputDate, out DateTime outputDate);
             if (parseSuccess)
             {
-                c.BirthDate = Convert.ToDateTime(outputDate);
+                outputDate = Convert.ToDateTime(outputDate);
                 TimeIntervalController timeInterval = new(outputDate, now);
                 if (timeInterval.Duration > eighteenYears)
                 {
-                    outputDate = c.BirthDate;
+                    //BirthDateValidated(outputDate);
+                    this.bd = outputDate;
                 }
                 else
                 {
                     a.ErrorMessages(3);
-                    a.GetDate();
-                    BirthDateValidate(a, c);
+                    //BirthDateValidate(a);
                 }
             }
             else
             {
                 a.ErrorMessages(4);
-                a.GetDate();
-                BirthDateValidate(a, c);
+                //BirthDateValidate(a);
             }
-        }                  
+        }
     }
 }

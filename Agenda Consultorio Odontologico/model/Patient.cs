@@ -2,23 +2,17 @@
 {
     public class Patient
     {
-        private string _name;
-        private long _cpf;
-        private DateTime _bornDate;
-        public string Name
+        private static List<Patient> _patientsList = new();
+        public string Name { get; set; }
+        public long CPF { get; set; }
+        public DateTime BirthDate { get; set; }
+        public static List<Patient> PatientList { get { return _patientsList; } set { _patientsList = value; } }
+        public Patient(string name, long cpf, DateTime birthDate)
         {
-            get { return _name; }
-            set { _name = value; }
-        }
-        public long CPF
-        {
-            get { return _cpf; }
-            set { _cpf = value; }
-        }
-        public DateTime BirthDate
-        {
-            get { return _bornDate; }
-            set { _bornDate = value; }
-        }
+            Name = name;
+            CPF = cpf;
+            BirthDate = birthDate;
+            _patientsList.Add(this);
+        }       
     }
 }

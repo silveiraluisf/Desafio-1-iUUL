@@ -22,14 +22,14 @@ namespace Agenda_Consultorio_Odontologico.controller
                 switch (value)
                 {
                     case 1:
-                        prc.AddPatient(pri);
+                        prc.AddPatient();
                         m.OpenInterface();
                         break;
                     case 2:
                         System.Environment.Exit(0);
                         break;
                     case 3:
-                        System.Environment.Exit(0);
+                        prc.PrintPatientsList();
                         break;
                     case 4:
                         System.Environment.Exit(0);
