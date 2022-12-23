@@ -5,7 +5,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
     public class PatientMenuController
     {
         PatientMenuInterface pmi = new();
-        PatientRegistrationController prc = new();
+        PatientMainController prc = new();
         public void OpenInterface()
         {
             pmi.PatientMenu();

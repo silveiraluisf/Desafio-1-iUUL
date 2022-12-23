@@ -1,59 +1,23 @@
 ﻿using Agenda_Consultorio_Odontologico.model;
 using Agenda_Consultorio_Odontologico.view.patientInterface;
-using System.Net.Http.Headers;
+using System;
 
 namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
-    public class PatientRegistrationController
+    public class PatientValidatorController
     {
         PatientRegistrationInterface pri = new();
-        PatientDeleteInterface pdi = new();
-        PatientListInterface pli = new();
+
         string name;
         long cpf;
         DateTime birthDate;
-        public void AddPatient()
+        public void PatientValidator()
         {
             pri.GetInformation();
             pri.ShowData();
             NameValidate();
         }
-        public void RemovePatient()
-        {
-            pdi.GetInformation();
-            bool parseSuccess = long.TryParse(pdi.InputCPF, out long outputCPF);
-                if (parseSuccess)
-                {
-                for (int i = 0; i < Patient.PatientList.Count; i++)
-                    {
-                    Patient patient = Patient.PatientList[i];
-                    if (patient.CPF == outputCPF)
-                    {
-                        Patient.PatientList.Remove(patient);
-                        pdi.SuccessMessage();
-                    }
-                    }
-                    pdi.ErrorMessage();
-                }
-                else
-                {
-                    pdi.ErrorMessage();
-                }                          
-        }
-        public void PrintPatientsListByCPF()
-        {
-            foreach (Patient patient in Patient.PatientList.OrderBy(x => x.CPF))
-            {
-                pli.ShowPatientsList(patient);
-            }
-        }
-        public void PrintPatientsListByName()
-        {
-            foreach (Patient patient in Patient.PatientList.OrderBy(x=>x.Name))
-            {
-                pli.ShowPatientsList(patient);
-            }
-        }
+
         public void NameValidate()
         {
             switch (pri.InputName.Length)
