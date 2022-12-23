@@ -17,7 +17,6 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
             pri.ShowData();
             NameValidate();
         }
-
         public void NameValidate()
         {
             switch (pri.InputName.Length)
@@ -43,7 +42,6 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     bool parseSuccess = long.TryParse(inputCPF, out long outputCPF);
                     if (parseSuccess)
                     {
-                        Console.WriteLine("Teste 1");
                         CPFValidateAllSameNumber(outputCPF);
                     }
                     else
@@ -88,20 +86,17 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     pri.FailureMessage();
                     break;
                 default:
-                    Console.WriteLine("Teste 2");
                     CPFAlreadyInTheListValidate(outputCPF);
                     break;
             }
         }
         public void CPFAlreadyInTheListValidate(long outputCPF)
         {
-            Console.WriteLine("Teste 2.5");
             int count = Patient.PatientList.Count;
             if (count > 0)
             {
                 for (int i = 0; i < count; i++)
                 {
-                    Console.WriteLine("Teste 2.5.5");
                     Patient patient = Patient.PatientList[i];
                     if (patient.CPF == outputCPF)
                     {
@@ -109,7 +104,6 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     }
                     else
                     {
-                        Console.WriteLine("Teste 3");
                         cpf = outputCPF;
                         BirthDateValidate();
                     }
@@ -117,27 +111,21 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
             }
             else 
             {
-                Console.WriteLine("Teste 3");
                 cpf = outputCPF;
                 BirthDateValidate();
-            }
-            
-           
+            }                      
         }
         public void BirthDateValidate()
         {
-            string inputDate = pri.InputDate;
             DateTime now = DateTime.Now;
-            TimeSpan eighteenYears = new TimeSpan(4748, 0, 0, 0);
-            bool parseSuccess = DateTime.TryParse(inputDate, out DateTime outputDate);
+            TimeSpan fourteenYears = new TimeSpan(4748, 0, 0, 0);
+            bool parseSuccess = DateTime.TryParse(pri.InputDate, out DateTime outputDate);
             if (parseSuccess)
             {
-                outputDate = Convert.ToDateTime(outputDate);
                 TimeIntervalController timeInterval = new(outputDate, now);
-                if (timeInterval.Duration > eighteenYears)
+                if (timeInterval.Duration > fourteenYears)
                 {
                     birthDate = outputDate;
-                    Console.WriteLine("Teste 4");
                     Patient patient = new(name, cpf, birthDate);
                     pri.SuccessMessage();
                 }
