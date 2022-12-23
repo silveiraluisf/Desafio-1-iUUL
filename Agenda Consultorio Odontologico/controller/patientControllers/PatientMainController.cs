@@ -48,10 +48,13 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
         }
         public void PrintPatientsListByName()
         {
+            pli.Title();
+            pli.Header();
             foreach (Patient patient in Patient.PatientList.OrderBy(x=>x.Name))
             {
                 pli.ShowPatientsList(patient);
             }
+            pli.Footer();
         }
         
     }
