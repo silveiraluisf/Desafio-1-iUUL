@@ -33,16 +33,20 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
         {
             Console.WriteLine("Cadastro do paciente \n");
         }
-        public void GetInformation()
+        public void GetName()
         {
             Console.WriteLine("Insira o nome do cliente: ");
-            _inputName = Console.ReadLine();
-
+            this._inputName = Console.ReadLine();
+        }
+        public void GetCPF()
+        {
             Console.WriteLine("Insira o CPF: ");
-            _inputCPF = Console.ReadLine();
-
+            this._inputCPF = Console.ReadLine();
+        }
+        public void GetDate()
+        {
             Console.WriteLine("Insira da data de nascimento (dd/mm/aaaa): ");
-            _inputDate = Console.ReadLine();
+            this._inputDate = Console.ReadLine();
         }
         public void ShowData()
         {
@@ -56,10 +60,18 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
         {
             Console.WriteLine("Paciente cadastrado com sucesso!\n");
         }
-        public void FailureMessage()
+        public void ErrorMessages(int n)
         {
-            //método temporário enquanto não é feito o tratamento dos erros 
-            Console.WriteLine("Opa, algum dado foi inserido errado!\n");
+            this._errorList = new List<string>
+            {
+                $"Erro no nome: {_inputName} -> O nome não pode ser vazio!" ,
+                $"Erro no nome: {_inputName} -> O nome deve possuir pelo menos 5 caracteres",
+                $"Erro no CPF: {_inputCPF} -> Favor insira um CPF válido (11 caracteres, apenas números).",
+                $"Erro no CPF: {_inputCPF} -> O CPF inserido já está cadastrado em outro paciente! Verifique os dados e insira novamente.",
+                $"Erro na data de nascimento: {_inputDate} -> O cliente deve ter pelo menos 13 anos!",
+                $"Erro na data de nascimento: { _inputDate} -> Favor insira uma data no formato DD,MM,AAAA. ",
+            };
+            Console.WriteLine($"{ErrorList[n]}");
         }
     }
 }

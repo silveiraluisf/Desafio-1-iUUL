@@ -13,82 +13,67 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
         DateTime birthDate;
         public void PatientValidator()
         {
-            pri.GetInformation();
+            pri.GetName();
+            pri.GetCPF();
+            pri.GetDate(); 
             pri.ShowData();
             NameValidate();
+            CPFValidate(); 
+            BirthDateValidate();
         }
         public void NameValidate()
         {
             switch (pri.InputName.Length)
             {
                 case 0:
-                    pri.FailureMessage();
+                    pri.ErrorMessages(0);
+                    pri.GetName();
+                    NameValidate();
                     break;
                 case < 5:
-                    pri.FailureMessage();
+                    pri.ErrorMessages(1);
+                    pri.GetName();
+                    NameValidate();
                     break;
                 case >= 5:
                     name = pri.InputName;
-                    CPFValidate();
                     break;
             }
         }
         public void CPFValidate()
         {
-            string inputCPF = pri.InputCPF;
-            switch (inputCPF.Length)
+            switch (pri.InputCPF.Length) 
             {
                 case 11:
-                    bool parseSuccess = long.TryParse(inputCPF, out long outputCPF);
+                    bool parseSuccess = long.TryParse(pri.InputCPF, out long outputCPF);
                     if (parseSuccess)
                     {
                         CPFValidateAllSameNumber(outputCPF);
                     }
                     else
                     {
-                        pri.FailureMessage();
+                        pri.ErrorMessages(2);
+                        pri.GetCPF();
+                        CPFValidate();
                     }
                     break;
                 default:
-                    pri.FailureMessage();
+                    pri.ErrorMessages(2);
+                    pri.GetCPF();
+                    CPFValidate();
                     break;
             }
         }
-        public void CPFValidateAllSameNumber(long outputCPF)
+        public void CPFValidateAllSameNumber(long outputCPF) 
         {
-            switch (outputCPF)
+            long[] list = { 11111111111, 22222222222, 33333333333, 44444444444, 55555555555, 66666666666, 77777777777, 88888888888, 99999999999 };
+            if(list.Contains(outputCPF))
             {
-                case 11111111111:
-                    pri.FailureMessage();
-                    break;
-                case 22222222222:
-                    pri.FailureMessage();
-                    break;
-                case 33333333333:
-                    pri.FailureMessage();
-                    break;
-                case 44444444444:
-                    pri.FailureMessage();
-                    break;
-                case 55555555555:
-                    pri.FailureMessage();
-                    break;
-                case 66666666666:
-                    pri.FailureMessage();
-                    break;
-                case 77777777777:
-                    pri.FailureMessage();
-                    break;
-                case 88888888888:
-                    pri.FailureMessage();
-                    break;
-                case 99999999999:
-                    pri.FailureMessage();
-                    break;
-                default:
-                    CPFAlreadyInTheListValidate(outputCPF);
-                    break;
-            }
+                pri.ErrorMessages(2);
+                pri.GetCPF();
+                CPFValidate();
+            }                          
+            else CPFAlreadyInTheListValidate(outputCPF);
         }
         public void CPFAlreadyInTheListValidate(long outputCPF)
         {
@@ -100,19 +85,19 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     Patient patient = Patient.PatientList[i];
                     if (patient.CPF == outputCPF)
                     {
-                        pri.FailureMessage();
+                        pri.ErrorMessages(3);
+                        pri.GetCPF();
+                        CPFValidate();
                     }
                     else
                     {
                         cpf = outputCPF;
-                        BirthDateValidate();
                     }
                 }
             }
             else 
             {
                 cpf = outputCPF;
-                BirthDateValidate();
             }                      
         }
         public void BirthDateValidate()
@@ -131,12 +116,16 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                 }
                 else
                 {
-                    pri.FailureMessage(); ;
+                    pri.ErrorMessages(4);
+                    pri.GetDate();
+                    BirthDateValidate();
                 }
             }
             else
             {
-                pri.FailureMessage();
+                pri.ErrorMessages(5);
+                pri.GetDate();
+                BirthDateValidate();
             }
         }
     }
