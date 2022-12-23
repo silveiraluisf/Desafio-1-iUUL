@@ -1,11 +1,10 @@
-﻿using Agenda_Consultorio_Odontologico.view;
+﻿using Agenda_Consultorio_Odontologico.view.patientInterface;
 
-namespace Agenda_Consultorio_Odontologico.controller
+namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
     public class PatientMenuController
     {
         PatientMenuInterface pmi = new();
-        PatientRegistrationInterface pri = new();
         PatientRegistrationController prc = new();
         public void OpenInterface()
         {
@@ -26,15 +25,17 @@ namespace Agenda_Consultorio_Odontologico.controller
                         m.OpenInterface();
                         break;
                     case 2:
-                        System.Environment.Exit(0);
+                        prc.RemovePatient();
+                        m.OpenInterface();
                         break;
                     case 3:
                         prc.PrintPatientsList();
+                        m.OpenInterface();
                         break;
                     case 4:
-                        System.Environment.Exit(0);
+                        Environment.Exit(0);
                         break;
-                    case 5:                        
+                    case 5:
                         m.OpenInterface();
                         break;
                     default:

@@ -1,4 +1,4 @@
-﻿namespace Agenda_Consultorio_Odontologico.view
+﻿namespace Agenda_Consultorio_Odontologico.view.appointmentInterface
 {
     public class AppointmentMenuInterface
     {
@@ -15,7 +15,7 @@
             Console.WriteLine("2- Cancelar agendamento");
             Console.WriteLine("3- Listar agenda");
             Console.WriteLine("4- Voltar p/ menu principal");
-            this._inputOption = Console.ReadLine();
+            _inputOption = Console.ReadLine();
         }
         public void ErrorMessage()
         {

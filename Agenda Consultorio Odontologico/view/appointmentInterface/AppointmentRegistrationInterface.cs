@@ -1,4 +1,4 @@
-﻿namespace Agenda_Consultorio_Odontologico.view
+﻿namespace Agenda_Consultorio_Odontologico.view.appointmentInterface
 {
     public class AppointmentRegistrationInterface
     {
@@ -33,30 +33,30 @@
         public void GetPatientCPF()
         {
             Console.WriteLine("Insira o CPF do paciente: ");
-            this._inputPatientCPF = Console.ReadLine();
+            _inputPatientCPF = Console.ReadLine();
         }
         public void GetDate()
         {
             Console.WriteLine("Insira a data da consulta (dd/mm/aaaa): ");
-            this._inputDate = Console.ReadLine();
+            _inputDate = Console.ReadLine();
         }
         public void GetStart()
         {
             Console.WriteLine("Insira o horário de início da consulta (HHMM): ");
-            this._inputStart = Console.ReadLine();
+            _inputStart = Console.ReadLine();
         }
         public void GetEnd()
         {
             Console.WriteLine("Insira o horário de término da consulta (HHMM): ");
-            this._inputEnd = Console.ReadLine();
+            _inputEnd = Console.ReadLine();
         }
         public void ShowData()
         {
             Console.WriteLine($"--------------------------------------------");
-            Console.WriteLine($"CPF: {this.InputPatientCPF}");
-            Console.WriteLine($"Data da consulta: {this.InputDate}");
-            Console.WriteLine($"Hora inicial: {this.InputStart}");
-            Console.WriteLine($"Hora final: {this.InputEnd} \n");
+            Console.WriteLine($"CPF: {InputPatientCPF}");
+            Console.WriteLine($"Data da consulta: {InputDate}");
+            Console.WriteLine($"Hora inicial: {InputStart}");
+            Console.WriteLine($"Hora final: {InputEnd} \n");
             Console.WriteLine("Agendamento realizado com sucesso!\n");
         }
     }

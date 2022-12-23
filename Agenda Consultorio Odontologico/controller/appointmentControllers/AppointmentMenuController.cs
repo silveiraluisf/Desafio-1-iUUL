@@ -1,6 +1,6 @@
-﻿using Agenda_Consultorio_Odontologico.view;
+﻿using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 
-namespace Agenda_Consultorio_Odontologico.controller
+namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentMenuController
     {
@@ -23,16 +23,16 @@ namespace Agenda_Consultorio_Odontologico.controller
                 switch (value)
                 {
                     case 1:
-                        arc.AddAppointment(ari);                       
+                        arc.AddAppointment(ari);
                         m.OpenInterface();
                         break;
                     case 2:
-                        System.Environment.Exit(0);
+                        Environment.Exit(0);
                         break;
                     case 3:
-                        System.Environment.Exit(0);
+                        Environment.Exit(0);
                         break;
-                    case 4:                       
+                    case 4:
                         m.OpenInterface();
                         break;
                     default:

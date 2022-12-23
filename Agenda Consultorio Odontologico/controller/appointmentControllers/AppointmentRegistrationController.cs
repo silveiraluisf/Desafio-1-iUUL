@@ -1,7 +1,7 @@
 ﻿using Agenda_Consultorio_Odontologico.model;
-using Agenda_Consultorio_Odontologico.view;
+using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 
-namespace Agenda_Consultorio_Odontologico.controller
+namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentRegistrationController
     {

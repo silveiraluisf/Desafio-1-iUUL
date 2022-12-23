@@ -1,4 +1,6 @@
-﻿using Agenda_Consultorio_Odontologico.view;
+﻿using Agenda_Consultorio_Odontologico.controller.appointmentController;
+using Agenda_Consultorio_Odontologico.controller.patientControllers;
+using Agenda_Consultorio_Odontologico.view;
 
 namespace Agenda_Consultorio_Odontologico.controller
 {
