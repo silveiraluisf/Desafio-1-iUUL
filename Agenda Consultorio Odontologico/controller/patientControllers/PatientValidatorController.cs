@@ -43,6 +43,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     bool parseSuccess = long.TryParse(inputCPF, out long outputCPF);
                     if (parseSuccess)
                     {
+                        Console.WriteLine("Teste 1");
                         CPFValidateAllSameNumber(outputCPF);
                     }
                     else
@@ -87,16 +88,47 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     pri.FailureMessage();
                     break;
                 default:
-                    cpf = outputCPF;
-                    BirthDateValidate();
+                    Console.WriteLine("Teste 2");
+                    CPFAlreadyInTheListValidate(outputCPF);
                     break;
             }
+        }
+        public void CPFAlreadyInTheListValidate(long outputCPF)
+        {
+            Console.WriteLine("Teste 2.5");
+            int count = Patient.PatientList.Count;
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    Console.WriteLine("Teste 2.5.5");
+                    Patient patient = Patient.PatientList[i];
+                    if (patient.CPF == outputCPF)
+                    {
+                        pri.FailureMessage();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Teste 3");
+                        cpf = outputCPF;
+                        BirthDateValidate();
+                    }
+                }
+            }
+            else 
+            {
+                Console.WriteLine("Teste 3");
+                cpf = outputCPF;
+                BirthDateValidate();
+            }
+            
+           
         }
         public void BirthDateValidate()
         {
             string inputDate = pri.InputDate;
             DateTime now = DateTime.Now;
-            TimeSpan eighteenYears = new TimeSpan(6574, 0, 0, 0);
+            TimeSpan eighteenYears = new TimeSpan(4748, 0, 0, 0);
             bool parseSuccess = DateTime.TryParse(inputDate, out DateTime outputDate);
             if (parseSuccess)
             {
@@ -105,6 +137,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                 if (timeInterval.Duration > eighteenYears)
                 {
                     birthDate = outputDate;
+                    Console.WriteLine("Teste 4");
                     Patient patient = new(name, cpf, birthDate);
                     pri.SuccessMessage();
                 }
