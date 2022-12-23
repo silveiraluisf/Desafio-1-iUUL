@@ -20,14 +20,14 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
             bool parseSuccess = long.TryParse(pdi.InputCPF, out long outputCPF);
                 if (parseSuccess)
                 {
-                for (int i = 0; i < Patient.PatientList.Count; i++)
+                    for (int i = 0; i < Patient.PatientList.Count; i++)
                     {
-                    Patient patient = Patient.PatientList[i];
-                    if (patient.CPF == outputCPF)
-                    {
-                        Patient.PatientList.Remove(patient);
-                        pdi.SuccessMessage();
-                    }
+                        Patient patient = Patient.PatientList[i];
+                        if (patient.CPF == outputCPF)
+                        {
+                            Patient.PatientList.Remove(patient);
+                            pdi.SuccessMessage();
+                        }
                     }
                     pdi.ErrorMessage();
                 }

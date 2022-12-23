@@ -56,7 +56,10 @@
             Console.WriteLine($"CPF: {InputPatientCPF}");
             Console.WriteLine($"Data da consulta: {InputDate}");
             Console.WriteLine($"Hora inicial: {InputStart}");
-            Console.WriteLine($"Hora final: {InputEnd} \n");
+            Console.WriteLine($"Hora final: {InputEnd} \n");            
+        }
+        public void SuccessMessage()
+        {
             Console.WriteLine("Agendamento realizado com sucesso!\n");
         }
     }
