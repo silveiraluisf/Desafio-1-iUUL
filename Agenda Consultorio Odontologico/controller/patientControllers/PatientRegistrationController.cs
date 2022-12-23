@@ -1,5 +1,6 @@
 ﻿using Agenda_Consultorio_Odontologico.model;
 using Agenda_Consultorio_Odontologico.view.patientInterface;
+using System.Net.Http.Headers;
 
 namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
@@ -7,6 +8,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
     {
         PatientRegistrationInterface pri = new();
         PatientDeleteInterface pdi = new();
+        PatientListInterface pli = new();
         string name;
         long cpf;
         DateTime birthDate;
@@ -38,11 +40,18 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     pdi.ErrorMessage();
                 }                          
         }
-        public void PrintPatientsList()
+        public void PrintPatientsListByCPF()
         {
-            foreach (Patient patient in Patient.PatientList)
+            foreach (Patient patient in Patient.PatientList.OrderBy(x => x.CPF))
             {
-                Console.Write($"Teste 2 = {patient.Name}\n");
+                pli.ShowPatientsList(patient);
+            }
+        }
+        public void PrintPatientsListByName()
+        {
+            foreach (Patient patient in Patient.PatientList.OrderBy(x=>x.Name))
+            {
+                pli.ShowPatientsList(patient);
             }
         }
         public void NameValidate()

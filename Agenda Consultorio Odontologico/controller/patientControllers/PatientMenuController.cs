@@ -29,11 +29,12 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                         m.OpenInterface();
                         break;
                     case 3:
-                        prc.PrintPatientsList();
+                        prc.PrintPatientsListByCPF();
                         m.OpenInterface();
                         break;
                     case 4:
-                        Environment.Exit(0);
+                        prc.PrintPatientsListByName();
+                        m.OpenInterface();
                         break;
                     case 5:
                         m.OpenInterface();
