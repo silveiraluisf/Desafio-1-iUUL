@@ -18,10 +18,13 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
         }
         public void PrintFullAppointmentList()
         {
+            ali.Title();
+            ali.Header();
             foreach(Appointment appointment in Appointment.AppointmentList.OrderBy(x => x.Date))
             {
                 ali.ShowAppointmentsList(appointment);
             }
+            ali.Footer();
         }
     }
 }

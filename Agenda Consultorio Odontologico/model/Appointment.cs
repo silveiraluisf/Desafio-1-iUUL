@@ -8,6 +8,7 @@
         public int Start { get; set; }
         public int End { get; set; }
         public Patient? Patient { get; set; }
+        public int Time;
         public static List<Appointment> AppointmentList { get { return _appointmentList; } set { _appointmentList = value; } }
         public Appointment(DateTime date, int start, int end, Patient? patient)
         {
@@ -15,6 +16,7 @@
             Start = start;
             End = end;
             Patient = patient;
+            Time = End - (Start + 40);
             _appointmentList.Add(this);
         }
     }
