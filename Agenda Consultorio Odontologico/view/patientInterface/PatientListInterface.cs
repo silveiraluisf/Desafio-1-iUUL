@@ -17,8 +17,8 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
         public void ShowPatientsList(Patient patient)
         {
             Console.WriteLine($"{patient.CPF.ToString("00000000000")}  {patient.Name}  {patient.BirthDate.ToString("dd/MM/yyyy")}   {patient.Age}");
-            Console.WriteLine("                                        Agendado para: 99/99/9999");
-            Console.WriteLine("                                        HH:MM às HH:MM\n");
+            Console.WriteLine("             Agendado para: 99/99/9999");
+            Console.WriteLine("             HH:MM às HH:MM\n");
         }
         public void Footer()
         {
