@@ -24,9 +24,10 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
         }
         public void CheckAppointments(Patient patient)
         {
-            foreach(Appointment appointment in Appointment.AppointmentList)
+            for (int i = 0; i < Appointment.AppointmentList.Count; i++)
             {
-                if(appointment.Patient == patient)
+                Appointment appointment = Appointment.AppointmentList[i];
+                if (appointment.Patient == patient)
                 {
                     CheckAppointmentTime(appointment, patient);
                 }

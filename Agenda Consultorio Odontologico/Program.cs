@@ -1,4 +1,5 @@
 ﻿using Agenda_Consultorio_Odontologico.controller;
+using Agenda_Consultorio_Odontologico.model;
 
 namespace Agenda_Consultorio_Odontologico
 {
@@ -7,6 +8,19 @@ namespace Agenda_Consultorio_Odontologico
         static public void Main()
         {
             MainMenuController mc = new MainMenuController();
+
+            var date1 = new DateTime(1992, 9, 13, 0, 0, 0);
+            Patient a = new("Luís Fernando", 06871326901, date1);
+
+            var date2 = new DateTime(1997, 11, 29, 0, 0, 0);
+            Patient b = new("André Ricardo", 12312312311, date2);
+
+            var date3 = new DateTime(1990, 9, 19, 0, 0, 0);
+            Patient c = new("Bárbara", 45645645644, date3);
+
+            Appointment appointment1 = new(date1, 1000, 1030, a);
+            Appointment appointment2 = new(DateTime.Now, 1000, 1030, b);
+
             mc.OpenInterface();
         }
     }
