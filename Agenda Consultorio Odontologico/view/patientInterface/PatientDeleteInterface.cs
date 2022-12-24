@@ -34,7 +34,7 @@
             {
                 $"Erro no CPF: {_inputCPF} -> Favor insira um CPF válido (11 caracteres, apenas números).",
                 $"Erro no CPF: {_inputCPF} -> O CPF inserido não está cadastrado!",
-                $"Você não pode excluir um paciente que possui agendamento programado!",
+                $"Erro no CPF: {_inputCPF} -> Você não pode excluir um paciente que possui agendamento programado!",
             };
             Console.WriteLine($"{ErrorList[n]}");
         }

@@ -8,6 +8,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
         PatientDeleteInterface pdi = new();
         public void DeletePatient()
         {
+            List<Patient> list = new List<Patient>();
             pdi.GetInformation();
             bool parseSuccess = long.TryParse(pdi.InputCPF, out long outputCPF);
             if (parseSuccess)
@@ -17,20 +18,45 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
                     Patient patient = Patient.PatientList[i];
                     if (patient.CPF == outputCPF)
                     {
+                        list.Add(patient);
+                    }
+                }
+                if (list.Count == 0)
+                {
+                    pdi.ErrorMessages(1);
+                }
+                else
+                {
+                    foreach (Patient patient in list)
+                    {
                         CheckAppointments(patient);
                     }
                 }
             }
+            else pdi.ErrorMessages(0);
         }
         public void CheckAppointments(Patient patient)
         {
+            List<Appointment> list = new();
             for (int i = 0; i < Appointment.AppointmentList.Count; i++)
             {
                 Appointment appointment = Appointment.AppointmentList[i];
                 if (appointment.Patient == patient)
                 {
+                    list.Add(appointment);
+                }
+            }
+            if (list.Count > 0)
+            {
+                foreach (Appointment appointment in list)
+                {
                     CheckAppointmentTime(appointment, patient);
                 }
+            }
+            else
+            {
+                Patient.PatientList.Remove(patient);
+                pdi.SuccessMessage();
             }
         }
         public void CheckAppointmentTime(Appointment appointment, Patient patient)
