@@ -6,9 +6,8 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
     public class PatientMainController
     {
         PatientValidatorController pvc = new();
-        PatientDeleteInterface pdi = new();
         PatientListInterface pli = new();
-
+        PatientDeleteController pdc = new();
         
         public void AddPatient()
         {
@@ -16,25 +15,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
         }
         public void RemovePatient()
         {
-            pdi.GetInformation();
-            bool parseSuccess = long.TryParse(pdi.InputCPF, out long outputCPF);
-                if (parseSuccess)
-                {
-                    for (int i = 0; i < Patient.PatientList.Count; i++)
-                    {
-                        Patient patient = Patient.PatientList[i];
-                        if (patient.CPF == outputCPF)
-                        {
-                            Patient.PatientList.Remove(patient);
-                            pdi.SuccessMessage();
-                        }
-                    }
-                    pdi.ErrorMessage();
-                }
-                else
-                {
-                    pdi.ErrorMessage();
-                }                          
+            pdc.DeletePatient();                  
         }
         public void PrintPatientsListByCPF()
         {
