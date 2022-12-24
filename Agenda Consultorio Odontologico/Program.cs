@@ -18,7 +18,9 @@ namespace Agenda_Consultorio_Odontologico
             var date3 = new DateTime(1990, 9, 19, 0, 0, 0);
             Patient c = new("Bárbara", 45645645644, date3);
 
-            Appointment appointment1 = new(date1, 1000, 1030, a);
+            var date4 = new DateTime(2022, 8, 26, 0, 0, 0);
+
+            Appointment appointment1 = new(date4, 1000, 1030, a);
             Appointment appointment2 = new(DateTime.Now, 1000, 1030, b);
 
             mc.OpenInterface();
