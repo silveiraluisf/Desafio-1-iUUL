@@ -1,5 +1,6 @@
 ﻿using Agenda_Consultorio_Odontologico.model;
 using Agenda_Consultorio_Odontologico.view.appointmentInterface;
+using System;
 using System.Collections.Generic;
 
 namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
@@ -12,6 +13,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         int start;
         int end;
         Patient patient;
+        bool hasConflit = false;
 
         public void AppointmentValidator()
         {
@@ -26,8 +28,15 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
             EndValidate();
             CheckFutureAppointment();
             CheckOverlappingAppointment();
-            Appointment a = new(date, start, end, patient);
-            ari.SuccessMessage();
+            if(!hasConflit) 
+            { 
+                Appointment a = new(date, start, end, patient);
+                ari.SuccessMessage();
+            }
+            else
+            {
+                ami.AppointmentMenu();
+            }
         }
         public void PatientCPFValidate()
         {
@@ -46,14 +55,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 }
                 if (list.Count == 0)
                 {
-                    Console.WriteLine("CPF não cadastrado"); //mensagem de erro temporária
+                    ari.ErrorMessages(0);
                     ari.GetPatientCPF();
                     PatientCPFValidate();
                 }
             }
             else
             {
-                Console.WriteLine(" Favor insira um CPF válido (11 caracteres, apenas números)."); //mensagem de erro temporária
+                ari.ErrorMessages(1); 
                 ari.GetPatientCPF();
                 PatientCPFValidate();
             }
@@ -70,14 +79,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 }
                 else
                 {
-                    Console.WriteLine("A data não pode ser anterior à hoje!"); //mensagem de erro temporária 
+                    ari.ErrorMessages(2);
                     ari.GetDate();
                     DateValidate();
                 }
             }
             else
             {
-                Console.WriteLine("Favor insira uma data no formato DD,MM,AAAA."); //mensagem de erro temporária 
+                ari.ErrorMessages(3);
                 ari.GetDate();
                 DateValidate();
             }
@@ -95,7 +104,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                     }
                     else
                     {
-                        Console.WriteLine("Horário digitado inválido ou fora do horário de atendimento!");
+                        ari.ErrorMessages(4);
                         ari.GetStart();
                         StartValidate();
                     }
@@ -103,7 +112,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
             }
             else
             {
-                Console.WriteLine("Favor digite um horário no formato 0900, 1345, 1730");
+                ari.ErrorMessages(5);
                 ari.GetStart();
                 StartValidate();
             }            
@@ -123,24 +132,24 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                         }
                         else
                         {
+                            ari.ErrorMessages(6);
                             ari.GetEnd();
-                            EndValidate();
-                            Console.WriteLine("Horário digitado inválido ou fora do horário de atendimento!");
+                            EndValidate();                           
                         }
                     }
                     else
                     {
+                        ari.ErrorMessages(7);
                         ari.GetEnd();
-                        EndValidate();
-                        Console.WriteLine("A hora final não pode ser menor que a hora inicial!");
+                        EndValidate();                       
                     }
                 }
             }
             else 
             {
+                ari.ErrorMessages(8);
                 ari.GetEnd();
                 EndValidate();
-                Console.WriteLine("Favor digite um horário no formato 0900, 1345, 1730");
             }
         }
         public void CheckFutureAppointment()
@@ -152,7 +161,8 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 {
                     if(appointment.Patient == patient)
                     {
-                        Console.WriteLine("Não pode haver dois agendamentos futuros para um mesmo paciente!");
+                        ari.ErrorMessages(9);
+                        hasConflit = true;
                         break;
                     }
                 }
@@ -167,7 +177,8 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 {
                     if ((start >= appointment.Start && start < appointment.End) || (end > appointment.Start && end <= appointment.End))
                     {
-                        Console.WriteLine("Já existe uma consulta marcada para este horário!");
+                        ari.ErrorMessages(10);
+                        hasConflit = true;
                         break;
                     }
                 }                     

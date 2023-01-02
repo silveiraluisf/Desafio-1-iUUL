@@ -6,6 +6,7 @@
         private string _inputDate;
         private string _inputStart;
         private string _inputEnd;
+        private List<string> _errorList;
         public string InputPatientCPF
         {
             get { return _inputPatientCPF; }
@@ -25,6 +26,11 @@
         {
             get { return _inputEnd; }
             set { _inputEnd = value; }
+        }
+        public List<string> ErrorList
+        {
+            get { return _errorList; }
+            set { _errorList = value; }
         }
         public void Title()
         {
@@ -61,6 +67,24 @@
         public void SuccessMessage()
         {
             Console.WriteLine("Agendamento realizado com sucesso!\n");
+        }
+        public void ErrorMessages(int n)
+        {
+            this._errorList = new List<string>
+            {
+                $"Erro no CPF: {_inputPatientCPF} -> CPF não cadastrado!" ,
+                $"Erro no CPF: {_inputPatientCPF} -> Favor insira um CPF válido (11 caracteres, apenas números).",
+                $"Erro na data: {_inputDate} -> A data não pode ser anterior à hoje!",
+                $"Erro na data: { _inputDate} -> Favor insira uma data no formato DD,MM,AAAA. ",
+                $"Erro no horário de início: {_inputStart} -> Hora inválida ou fora do horário de atendimento (horário de atendimento é das 8h até 19h)",
+                $"Erro no horário de início: {_inputStart} -> Favor digite um horário no formato 0900, 1345, 1730." ,
+                $"Erro no horário de término: {_inputEnd} -> Hora inválida ou fora do horário de atendimento (horário de atendimento é das 8h até 19h)",
+                $"Erro no horário de término: {_inputEnd} -> A hora final não pode ser menor que a hora inicial!)",
+                $"Erro no horário de término: {_inputEnd} -> Favor digite um horário no formato 0900, 1345, 1730." ,
+                $"Conflito de agendamento: Não pode haver dois agendamentos futuros para um mesmo paciente!" ,
+                $"Conflito de agendamento: Já existe uma consulta marcada para este horário!" ,
+            };
+            Console.WriteLine($"{ErrorList[n]}");
         }
     }
 }
