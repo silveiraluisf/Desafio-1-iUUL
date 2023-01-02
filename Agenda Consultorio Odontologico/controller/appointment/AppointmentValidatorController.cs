@@ -95,6 +95,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         {
             if (ari.InputStart.Length > 0 && ari.InputStart.Length < 5)
             {
+                CheckStartHourFormat();
                 bool parseSuccess = int.TryParse(ari.InputStart, out int outputStart);
                 if (parseSuccess)
                 {
@@ -121,6 +122,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         {
             if (ari.InputEnd.Length > 0 && ari.InputEnd.Length < 5)
             {
+                CheckEndHourFormat();
                 bool parseSuccess = int.TryParse(ari.InputEnd, out int outputEnd);
                 if (parseSuccess)
                 {
@@ -182,6 +184,58 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                         break;
                     }
                 }                     
+            }
+        }
+        public void CheckStartHourFormat()
+        {
+            char a = ari.InputStart[2];
+            char b = ari.InputStart[3];            
+            if (int.TryParse(a.ToString(), out int n))
+            {
+                if (n > 5)
+                {
+                    ari.ErrorMessages(5);
+                    ari.GetStart();
+                    StartValidate();
+                }
+                else
+                {
+                    if(int.TryParse(b.ToString(), out int m))
+                    {
+                        if(!(m == 0 || m == 5))
+                        {
+                            ari.ErrorMessages(5);
+                            ari.GetStart();
+                            StartValidate();
+                        }
+                    }
+                }
+            }
+        }
+        public void CheckEndHourFormat()
+        {
+            char a = ari.InputEnd[2];
+            char b = ari.InputEnd[3];
+            if (int.TryParse(a.ToString(), out int n))
+            {
+                if (n > 5)
+                {
+                    ari.ErrorMessages(8);
+                    ari.GetEnd();
+                    EndValidate();
+                }
+                else
+                {
+                    if (int.TryParse(b.ToString(), out int m))
+                    {
+                        if (!(m == 0 || m == 5))
+                        {
+                            ari.ErrorMessages(8);
+                            ari.GetEnd();
+                            EndValidate();
+                        }
+                    }
+                }
             }
         }
     }
