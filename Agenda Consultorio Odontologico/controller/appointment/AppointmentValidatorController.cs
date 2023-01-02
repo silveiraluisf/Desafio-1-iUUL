@@ -1,11 +1,13 @@
 ﻿using Agenda_Consultorio_Odontologico.model;
 using Agenda_Consultorio_Odontologico.view.appointmentInterface;
+using System.Collections.Generic;
 
 namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
 {
     public class AppointmentValidatorController
     {
         AppointmentRegistrationInterface ari = new();
+        AppointmentMenuInterface ami = new();
         DateTime date;
         int start;
         int end;
@@ -22,9 +24,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
             DateValidate();
             StartValidate();
             EndValidate();
+            CheckFutureAppointment();
+            CheckOverlappingAppointment();
+            Appointment a = new(date, start, end, patient);
+            ari.SuccessMessage();
         }
         public void PatientCPFValidate()
         {
+            List<Patient> list = new();
             bool parseSuccess = long.TryParse(ari.InputPatientCPF, out long outputCPF);
             if (parseSuccess)
             {
@@ -33,27 +40,31 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                     Patient p = Patient.PatientList[i];
                     if (p.CPF == outputCPF)
                     {
+                        list.Add(p);
                         patient = p;
                     }
                 }
-                //Console.WriteLine("CPF não cadastrado"); //mensagem de erro temporária
-                //ari.GetPatientCPF();
-                //PatientCPFValidate();
+                if (list.Count == 0)
+                {
+                    Console.WriteLine("CPF não cadastrado"); //mensagem de erro temporária
+                    ari.GetPatientCPF();
+                    PatientCPFValidate();
+                }
             }
             else
             {
-                Console.WriteLine("CPF não cadastrado"); //mensagem de erro temporária
+                Console.WriteLine(" Favor insira um CPF válido (11 caracteres, apenas números)."); //mensagem de erro temporária
                 ari.GetPatientCPF();
                 PatientCPFValidate();
             }
         }
         public void DateValidate()
         {
-            DateTime now = DateTime.Now;
+            DateTime today = DateTime.Today;
             bool parseSuccess = DateTime.TryParse(ari.InputDate, out DateTime outputDate);
             if (parseSuccess)
             {
-                if (outputDate > now)
+                if (outputDate >= today)
                 {
                     date = outputDate;
                 }
@@ -109,8 +120,6 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                         if (outputEnd > 0815 && outputEnd < 1901)
                         {
                             end = outputEnd;
-                            Appointment appointment = new(date, start, end, patient);
-                            ari.SuccessMessage();
                         }
                         else
                         {
@@ -132,6 +141,36 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 ari.GetEnd();
                 EndValidate();
                 Console.WriteLine("Favor digite um horário no formato 0900, 1345, 1730");
+            }
+        }
+        public void CheckFutureAppointment()
+        {
+            for (int i = 0; i < Appointment.AppointmentList.Count; i++)
+            {
+                Appointment appointment = Appointment.AppointmentList[i];
+                if (DateTime.Today.Day < appointment.Date.Day)
+                {
+                    if(appointment.Patient == patient)
+                    {
+                        Console.WriteLine("Não pode haver dois agendamentos futuros para um mesmo paciente!");
+                        break;
+                    }
+                }
+            }
+        }
+        public void CheckOverlappingAppointment()
+        {
+            for (int i = 0; i < Appointment.AppointmentList.Count; i++)
+            {
+                Appointment appointment = Appointment.AppointmentList[i];
+                if (appointment.Date.Year == date.Year && appointment.Date.Month == date.Month && appointment.Date.Day == date.Day)
+                {
+                    if ((start >= appointment.Start && start < appointment.End) || (end > appointment.Start && end <= appointment.End))
+                    {
+                        Console.WriteLine("Já existe uma consulta marcada para este horário!");
+                        break;
+                    }
+                }                     
             }
         }
     }

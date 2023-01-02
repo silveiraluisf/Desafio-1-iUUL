@@ -6,7 +6,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
     {
         AppointmentMenuInterface ami = new();
         AppointmentRegistrationInterface ari = new();
-        AppointmentMainController arc = new();
+        AppointmentMainController amc = new();
         public void OpenInterface()
         {
             ami.AppointmentMenu();
@@ -23,14 +23,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                 switch (value)
                 {
                     case 1:
-                        arc.AddAppointment();
+                        amc.AddAppointment();
                         m.OpenInterface();
                         break;
                     case 2:
                         Environment.Exit(0);
                         break;
                     case 3:
-                        arc.PrintFullAppointmentList();
+                        amc.PrintFullAppointmentList();
                         m.OpenInterface();
                         break;
                     case 4:
