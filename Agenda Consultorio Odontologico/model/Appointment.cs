@@ -15,7 +15,7 @@
             Start = start;
             End = end;
             Patient = patient;
-            Time = End - (Start + 40);
+            Time = End - Start ;
             _appointmentList.Add(this);
         }
     }

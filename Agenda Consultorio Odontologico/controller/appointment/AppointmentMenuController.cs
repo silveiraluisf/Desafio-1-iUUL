@@ -27,7 +27,8 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                         m.OpenInterface();
                         break;
                     case 2:
-                        Environment.Exit(0);
+                        amc.RemoveAppointment();    
+                        m.OpenInterface();
                         break;
                     case 3:
                         amc.PrintFullAppointmentList();

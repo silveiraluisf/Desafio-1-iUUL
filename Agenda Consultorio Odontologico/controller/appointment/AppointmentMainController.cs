@@ -1,4 +1,5 @@
-﻿using Agenda_Consultorio_Odontologico.controller.appointmentControllers;
+﻿using Agenda_Consultorio_Odontologico.controller.appointment;
+using Agenda_Consultorio_Odontologico.controller.appointmentControllers;
 using Agenda_Consultorio_Odontologico.model;
 using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 
@@ -8,13 +9,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
     {
         AppointmentValidatorController avc = new();
         AppointmentListInterface ali = new();
+        AppointmentDeleteController adc = new();
         public void AddAppointment()
         {
             avc.AppointmentValidator();
         }
         public void RemoveAppointment()
         {
-            //to do
+            adc.DeletePatient();
         }
         public void PrintFullAppointmentList()
         {
