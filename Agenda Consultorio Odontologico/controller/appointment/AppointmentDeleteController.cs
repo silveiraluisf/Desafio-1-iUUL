@@ -8,7 +8,6 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
     public class AppointmentDeleteController
     {
         AppointmentDeleteInterface adi = new();
-        AppointmentMenuInterface ami = new();
         Appointment? appointment;
         bool hasConflit = false;
         public void DeletePatient()

@@ -5,7 +5,6 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
     public class AppointmentMenuController
     {
         AppointmentMenuInterface ami = new();
-        AppointmentRegistrationInterface ari = new();
         AppointmentMainController amc = new();
         public void OpenInterface()
         {
