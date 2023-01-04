@@ -16,13 +16,20 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
         }
         public void ShowPatientsList(Patient patient)
         {
-            Console.WriteLine($"{patient.CPF.ToString("00000000000")}  {patient.Name}  {patient.BirthDate.ToString("dd/MM/yyyy")}   {patient.Age}");
+            string cpf = patient.CPF.ToString("00000000000");
+            string name = patient.Name;
+            string birth = patient.BirthDate.ToString("dd/MM/yyyy");
+            string age = patient.Age.ToString();
+            Console.WriteLine(cpf.PadRight(13) + name.PadRight(27)+birth+age.PadLeft(6));
             foreach(Appointment appointment in Appointment.AppointmentList)
             {
                 if(appointment.Patient == patient && appointment.Date >= DateTime.Today)
                 {
-                    Console.WriteLine($"             Agendado para: {appointment.Date.ToString("dd/MM/yyyy")}");
-                    Console.WriteLine($"             {appointment.Start} às {appointment.End}");
+                    string date = appointment.Date.ToString("dd/MM/yyyy");
+                    string start = appointment.Start.ToString("0000");
+                    string end = appointment.End.ToString("0000");
+                    Console.WriteLine("             Agendado para: "+date);
+                    Console.WriteLine("             "+start+" às "+end);
                 }
             }
         }
