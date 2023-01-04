@@ -10,7 +10,7 @@ namespace Agenda_Consultorio_Odontologico
             MainMenuController mc = new MainMenuController();
 
             var date1 = new DateTime(1992, 9, 13, 0, 0, 0);
-            Patient a = new("Luís Fernando", 06871326901, date1);
+            Patient a = new("Luís Fernando", 78978978977, date1);
 
             var date2 = new DateTime(1997, 11, 29, 0, 0, 0);
             Patient b = new("André Ricardo", 12312312311, date2);
