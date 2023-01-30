@@ -9,6 +9,13 @@ namespace Agenda_Consultorio_Odontologico
         {
             MainMenuController mc = new MainMenuController();
 
+
+            SaveUsingEntity();
+            //mc.OpenInterface();
+        }
+
+        private static void SaveUsingEntity()
+        {
             var date1 = new DateTime(1992, 9, 13, 0, 0, 0);
             Patient a = new("Luís Fernando", 78978978977, date1);
 
@@ -25,7 +32,11 @@ namespace Agenda_Consultorio_Odontologico
             Appointment appointment2 = new(DateTime.Now, 1000, 1030, b);
             Appointment appointment3 = new(date5, 0900, 0945, a);
 
-            mc.OpenInterface();
+            using(var context = new ConsultorioContext())
+            {
+                context.Patients.Add(a);
+                context.SaveChanges();
+            }
         }
     }
 }
