@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Agenda_Consultorio_Odontologico.view.appointment
 {
-    public class AppointmentDeleteForm
+    public class DeleteAppointmentForm
     {
         public string InputCPF { get; set; }
         public string InputDate { get; set; }

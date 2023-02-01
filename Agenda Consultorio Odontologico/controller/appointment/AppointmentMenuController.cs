@@ -4,11 +4,11 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentMenuController
     {
-        AppointmentMenuInterface ami = new();
+        AppointmentMenu ami = new();
         AppointmentMainController amc = new();
         public void OpenInterface()
         {
-            ami.AppointmentMenu();
+            ami.Menu();
             Options();
         }
 
@@ -37,15 +37,15 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                         m.OpenInterface();
                         break;
                     default:
-                        ami.ErrorMessage();
-                        ami.AppointmentMenu();
+                        ami.InvalidOptionMessage();
+                        ami.Menu();
                         break;
                 }
             }
             else
             {
-                ami.ErrorMessage();
-                ami.AppointmentMenu();
+                ami.InvalidOptionMessage();
+                ami.Menu();
             }
         }
     }

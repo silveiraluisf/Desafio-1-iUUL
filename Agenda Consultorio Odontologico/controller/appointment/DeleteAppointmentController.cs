@@ -5,12 +5,12 @@ using System;
 
 namespace Agenda_Consultorio_Odontologico.controller.appointment
 {
-    public class AppointmentDeleteController
+    public class DeleteAppointmentController
     {
         public Appointment? appointment { get; set; }
         private bool hasConflit { get; set; }
 
-        public AppointmentDeleteController()
+        public DeleteAppointmentController()
         {
             hasConflit = false;
         }
@@ -18,7 +18,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
 
         public bool ValidateAppointment()
         {
-            AppointmentDeleteForm deletionForm = new();
+            DeleteAppointmentForm deletionForm = new();
 
             deletionForm.Form();
             IsDate(deletionForm);        
@@ -32,7 +32,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             using var context = new ConsultorioContext();
             context.Appointments.Remove(appointment);
             context.SaveChanges();
-            AppointmentDeleteForm.SuccessMessage();
+            DeleteAppointmentForm.SuccessMessage();
         }
 
 
@@ -43,7 +43,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
          * FUNÇÕES DE VALIDAÇÃO DE DADOS *
          ********************************/
         // DATA
-        private void IsDate(AppointmentDeleteForm deletionForm)
+        private void IsDate(DeleteAppointmentForm deletionForm)
         {
             bool parseSuccess = DateTime.TryParse(deletionForm.InputDate, out DateTime outputDate);
             if (parseSuccess)
@@ -63,7 +63,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             }
         }
         // HORA
-        private void IsHour(AppointmentDeleteForm deletionForm)
+        private void IsHour(DeleteAppointmentForm deletionForm)
         {
             bool parseSuccess = int.TryParse(deletionForm.InputStart, out int outputStart);
             if (parseSuccess)
@@ -81,7 +81,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             }
         }
         // CPF
-        private void IsCPF(AppointmentDeleteForm deletionForm)
+        private void IsCPF(DeleteAppointmentForm deletionForm)
         {
             List<Appointment> list = new();
             bool parseSuccess = long.TryParse(deletionForm.InputCPF, out long outputCPF);
@@ -105,7 +105,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             }
         }
         // DATA E HORA
-        private void IsAppointmentDateAndHour(AppointmentDeleteForm deletionForm)
+        private void IsAppointmentDateAndHour(DeleteAppointmentForm deletionForm)
         {
             bool parseSuccess = DateTime.TryParse(deletionForm.InputDate, out DateTime outputDate);
             List<Appointment> list = new();

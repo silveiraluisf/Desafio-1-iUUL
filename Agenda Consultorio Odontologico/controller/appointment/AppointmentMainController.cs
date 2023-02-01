@@ -1,22 +1,33 @@
 ﻿using Agenda_Consultorio_Odontologico.controller.appointment;
 using Agenda_Consultorio_Odontologico.controller.appointmentControllers;
+using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 
 namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentMainController
     {
-        AppointmentValidatorController avc = new();        
-        AppointmentDeleteController adc = new();
+        CreateAppointmentController createAppointmentController = new();        
+        DeleteAppointmentController deleteAppointmentController = new();
         AppointmentListMenuController almc = new();
+        AppointmentMenu appointmentMenu = new();
+
         public void AddAppointment()
         {
-            avc.AppointmentValidator();
+            if (createAppointmentController.ValidateAppointment())
+            {
+                createAppointmentController.CreateAppointment();
+                CreateAppointmentForm.SuccessMessage();
+            }
+                
+            else
+                appointmentMenu.Menu();
         }
         public void RemoveAppointment()
         {
-            if (adc.ValidateAppointment())
-                adc.RemoveAppointment();
+            if (deleteAppointmentController.ValidateAppointment())
+                deleteAppointmentController.RemoveAppointment();
         }
+
         public void PrintFullAppointmentList()
         {
             almc.OpenInterface();
