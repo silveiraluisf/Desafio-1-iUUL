@@ -29,8 +29,12 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
             CheckFutureAppointment();
             CheckOverlappingAppointment();
             if(!hasConflit) 
-            { 
-                Appointment a = new(date, start, end, patient);
+            {
+                using var context = new ConsultorioContext();
+                Appointment appointment = new();
+                appointment.Start = start; appointment.End = end; appointment.Date = date; appointment.Patient = patient;   
+                context.Appointments.Add(appointment);
+                context.SaveChanges();
                 ari.SuccessMessage();
             }
             else
@@ -44,9 +48,11 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
             bool parseSuccess = long.TryParse(ari.InputPatientCPF, out long outputCPF);
             if (parseSuccess)
             {
-                for (int i = 0; i < Patient.PatientList.Count; i++)
+                using var context = new ConsultorioContext();
+                var patients = context.Patients.ToList();
+                for (int i = 0; i < patients.Count; i++)
                 {
-                    Patient p = Patient.PatientList[i];
+                    Patient p = patients[i];
                     if (p.CPF == outputCPF)
                     {
                         list.Add(p);
@@ -156,12 +162,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         }
         public void CheckFutureAppointment()
         {
-            for (int i = 0; i < Appointment.AppointmentList.Count; i++)
+            using var context = new ConsultorioContext();
+            var appointments = context.Appointments.ToList();
+            for (int i = 0; i < appointments.Count; i++)
             {
-                Appointment appointment = Appointment.AppointmentList[i];
+                Appointment appointment = appointments[i];
                 if (DateTime.Today.Day < appointment.Date.Day)
                 {
-                    if(appointment.Patient == patient)
+                    if (appointment.Patient == patient)
                     {
                         ari.ErrorMessages(9);
                         hasConflit = true;
@@ -172,9 +180,11 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         }
         public void CheckOverlappingAppointment()
         {
-            for (int i = 0; i < Appointment.AppointmentList.Count; i++)
+            using var context = new ConsultorioContext();
+            var appointments = context.Appointments.ToList();
+            for (int i = 0; i < appointments.Count; i++)
             {
-                Appointment appointment = Appointment.AppointmentList[i];
+                Appointment appointment = appointments[i];
                 if (appointment.Date.Year == date.Year && appointment.Date.Month == date.Month && appointment.Date.Day == date.Day)
                 {
                     if ((start >= appointment.Start && start < appointment.End) || (end > appointment.Start && end <= appointment.End))
@@ -183,7 +193,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                         hasConflit = true;
                         break;
                     }
-                }                     
+                }
             }
         }
         public void CheckStartHourFormat()
