@@ -7,7 +7,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
         AppointmentListMenuInterface almi = new();
         AppointmentListController alc = new();
         public void OpenInterface()
-        {            
+        {
             almi.AppointmentListMenu();
             Options();
         }
@@ -23,11 +23,11 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
                 {
                     case 1:
                         alc.PrintFullAppointmentList();
-                        m.OpenInterface();
+                        m.OpenMenu();
                         break;
                     case 2:
                         alc.PrintAppointmentListByPeriod();
-                        m.OpenInterface();
+                        m.OpenMenu();
                         break;
                     default:
                         almi.ErrorMessages(0);

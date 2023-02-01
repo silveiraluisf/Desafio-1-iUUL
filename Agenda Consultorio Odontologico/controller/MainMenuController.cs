@@ -6,44 +6,46 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class MainMenuController
     {
-        MainMenuInterface mi = new();
-        PatientMenuController pmc = new();
-        AppointmentMenuController amc = new();
-        public void OpenInterface()
+        MainMenuView menu = new();
+        PatientMenuController patientMenuController = new();
+        AppointmentMenuController appointmentMenuController = new();
+
+
+        public void OpenMenu()
         {
-            mi.MainMenu();
+            menu.Menu();
             Options();
         }
 
-        public void Options()
+        private void Options()
         {
-            string inputOption = mi.InputOption;
-            bool parseSuccess = int.TryParse(inputOption, out int value);
-            if(parseSuccess )
+            bool parseSuccess = int.TryParse(menu.InputOption, out int value);
+
+            if(parseSuccess)
             {
                 switch(value)
                 {
                     case 1:
-                        pmc.OpenInterface();
+                        patientMenuController.Menu();
                         break;
                     case 2:
-                        amc.OpenInterface();
+                        appointmentMenuController.Menu();
                         break;
                     case 3:
                         System.Environment.Exit(0);
                         break;
                     default:
-                        mi.ErrorMessage();
-                        mi.MainMenu();
+                        MainMenuView.InvalidOptionMessage();
+                        menu.Menu();
                         break;
                 }
             }
             else
             {
-                mi.ErrorMessage();
-                mi.MainMenu();
+                MainMenuView.InvalidOptionMessage();
+                menu.Menu();
             }
-            
         }
+
     }
 }

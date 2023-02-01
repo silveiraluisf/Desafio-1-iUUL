@@ -15,9 +15,5 @@
             Console.WriteLine("4- Voltar p/ menu principal");
             InputOption = Console.ReadLine();
         }
-        public void InvalidOptionMessage()
-        {
-            Console.WriteLine("Favor insira uma opção válida.");
-        }
     }
 }

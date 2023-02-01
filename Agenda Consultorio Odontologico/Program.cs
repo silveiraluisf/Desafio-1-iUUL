@@ -2,12 +2,12 @@
 
 namespace Agenda_Consultorio_Odontologico
 {
-    class Program
+    static class Program
     {        
         static public void Main()
         {
             MainMenuController mc = new MainMenuController();
-            mc.OpenInterface();
+            mc.OpenMenu();
         }
     }
 }

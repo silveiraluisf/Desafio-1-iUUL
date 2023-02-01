@@ -32,7 +32,6 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             using var context = new ConsultorioContext();
             context.Appointments.Remove(appointment);
             context.SaveChanges();
-            DeleteAppointmentForm.SuccessMessage();
         }
 
 
