@@ -47,7 +47,6 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                 ami.ErrorMessage();
                 ami.AppointmentMenu();
             }
-
         }
     }
 }
