@@ -6,13 +6,15 @@ using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentController
-    {
-        CreateAppointmentController createAppointmentController = new();        
-        DeleteAppointmentController deleteAppointmentController = new();
-        AppointmentMenu appointmentMenu = new();
+    {   
+        public AppointmentController() { }
+
 
         public void CreateAppointment()
         {
+            CreateAppointmentController createAppointmentController = new();
+            AppointmentMenu appointmentMenu = new();
+
             if (createAppointmentController.ValidateAppointment())
             {
                 createAppointmentController.CreateAppointment();
@@ -24,6 +26,8 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
         }
         public void RemoveAppointment()
         {
+            DeleteAppointmentController deleteAppointmentController = new();
+
             if (deleteAppointmentController.ValidateAppointment())
             {
                 deleteAppointmentController.RemoveAppointment();
@@ -31,7 +35,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
             }
         }
 
-        public void PrintFullAppointmentList()
+        public void PrintSchedule()
         {
             AppointmentsMenuController almc = new();
             almc.OpenInterface();

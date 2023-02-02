@@ -7,7 +7,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
 {
     public class DeleteAppointmentController
     {
-        public Appointment? appointment { get; set; }
+        public Appointment appointment { get; set; }
         private bool hasConflit { get; set; }
 
         public DeleteAppointmentController()

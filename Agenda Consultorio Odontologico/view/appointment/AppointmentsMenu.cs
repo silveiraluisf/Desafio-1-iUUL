@@ -9,7 +9,7 @@
 
         public AppointmentsMenu() { }
 
-        public void AppointmentListMenu()
+        public void Menu()
         {
             Console.WriteLine("Lista dos agendamentos");
             Console.WriteLine("1- Mostrar lista completa.");

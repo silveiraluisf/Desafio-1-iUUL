@@ -32,7 +32,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                         mainMenuController.OpenMenu();
                         break;
                     case 3:
-                        appointmentMainController.PrintFullAppointmentList();
+                        appointmentMainController.PrintSchedule();
                         mainMenuController.OpenMenu();
                         break;
                     case 4:

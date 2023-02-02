@@ -4,13 +4,15 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
 {
     public class AppointmentsMenuController
     {
+        public AppointmentsMenuController() { }
+
+
         public void OpenInterface()
         {
             AppointmentsMenu appointmentsMenu = new();
-            appointmentsMenu.AppointmentListMenu();
+            appointmentsMenu.Menu();
             Options(appointmentsMenu);
         }
-
         private void Options(AppointmentsMenu appointmentsMenu)
         {
             AppointmentsController appointmentsController = new();
@@ -32,14 +34,14 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
                         break;
                     default:
                         appointmentsMenu.ErrorMessages(0);
-                        appointmentsMenu.AppointmentListMenu();
+                        appointmentsMenu.Menu();
                         break;
                 }
             }
             else
             {
                 appointmentsMenu.ErrorMessages(0);
-                appointmentsMenu.AppointmentListMenu();
+                appointmentsMenu.Menu();
             }
         }
 
