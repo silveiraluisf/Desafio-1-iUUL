@@ -6,19 +6,18 @@ namespace Agenda_Consultorio_Odontologico.controller
 {
     public class MainMenuController
     {
-        MainMenuView menu = new();
-        PatientMenuController patientMenuController = new();
-        AppointmentMenuController appointmentMenuController = new();
-
-
         public void OpenMenu()
         {
+            MainMenuView menu = new();
             menu.Menu();
-            Options();
+            Options(menu);
         }
 
-        private void Options()
+        private void Options(MainMenuView menu)
         {
+            PatientMenuController patientMenuController = new();
+            AppointmentMenuController appointmentMenuController = new();
+
             bool parseSuccess = int.TryParse(menu.InputOption, out int value);
 
             if(parseSuccess)
@@ -35,8 +34,10 @@ namespace Agenda_Consultorio_Odontologico.controller
                         System.Environment.Exit(0);
                         break;
                     default:
-                        MainMenuView.InvalidOptionMessage();
-                        menu.Menu();
+                        {
+                            MainMenuView.InvalidOptionMessage();
+                            menu.Menu();
+                        }
                         break;
                 }
             }

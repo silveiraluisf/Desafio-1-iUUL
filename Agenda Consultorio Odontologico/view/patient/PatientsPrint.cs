@@ -2,7 +2,7 @@
 
 namespace Agenda_Consultorio_Odontologico.view.patientInterface
 {
-    public class PatientListInterface
+    public class PatientsPrint
     {
         public void Title()
         {

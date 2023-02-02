@@ -5,7 +5,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
     public class PatientDeleteController
     {
-        PatientDeleteInterface pdi = new();
+        DeletePatientForm pdi = new();
         public void DeletePatient()
         {
             List<Patient> list = new List<Patient>();

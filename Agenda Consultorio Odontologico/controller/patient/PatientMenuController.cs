@@ -5,52 +5,52 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
     public class PatientMenuController
     {
-        PatientMenu pmi = new();
-        PatientMainController prc = new();
         public void Menu()
         {
-            pmi.Menu();
-            Options();
+            PatientMenu patientMenu = new();
+            patientMenu.Menu();
+            Options(patientMenu);
         }
-        public void Options()
+        private void Options(PatientMenu patientMenu)
         {
-            MainMenuController m = new();
+            PatientMainController patientMainController = new();
+            MainMenuController mainMenuController = new();
 
-            bool parseSuccess = int.TryParse(pmi.InputOption, out int value);
+            bool parseSuccess = int.TryParse(patientMenu.InputOption, out int value);
 
             if (parseSuccess)
             {
                 switch (value)
                 {
                     case 1:
-                        prc.AddPatient();
-                        m.OpenMenu();
+                        patientMainController.AddPatient();
+                        mainMenuController.OpenMenu();
                         break;
                     case 2:
-                        prc.RemovePatient();
-                        m.OpenMenu();
+                        patientMainController.RemovePatient();
+                        mainMenuController.OpenMenu();
                         break;
                     case 3:
-                        prc.PrintPatientsListByCPF();
-                        m.OpenMenu();
+                        patientMainController.PrintPatientsListByCPF();
+                        mainMenuController.OpenMenu();
                         break;
                     case 4:
-                        prc.PrintPatientsListByName();
-                        m.OpenMenu();
+                        patientMainController.PrintPatientsListByName();
+                        mainMenuController.OpenMenu();
                         break;
                     case 5:
-                        m.OpenMenu();
+                        mainMenuController.OpenMenu();
                         break;
                     default:
                         MainMenuView.InvalidOptionMessage();
-                        pmi.Menu();
+                        patientMenu.Menu();
                         break;
                 }
             }
             else
             {
                 MainMenuView.InvalidOptionMessage();
-                pmi.Menu();
+                patientMenu.Menu();
             }
 
         }

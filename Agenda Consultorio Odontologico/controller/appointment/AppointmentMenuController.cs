@@ -5,19 +5,18 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
 {
     public class AppointmentMenuController
     {
-        AppointmentMenu appointmentMenu = new();
-        AppointmentMainController amc = new();
-
-
         public void Menu()
         {
+            AppointmentMenu appointmentMenu = new();
             appointmentMenu.Menu();
-            Options();
+            Options(appointmentMenu);
         }
 
-        public void Options()
+        private void Options(AppointmentMenu appointmentMenu)
         {
-            MainMenuController m = new();
+            AppointmentController appointmentMainController = new();
+            MainMenuController mainMenuController = new();
+
             string inputOption = appointmentMenu.InputOption;
             bool parseSuccess = int.TryParse(inputOption, out int value);
             if (parseSuccess)
@@ -25,19 +24,19 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentController
                 switch (value)
                 {
                     case 1:
-                        amc.CreateAppointment();
-                        m.OpenMenu();
+                        appointmentMainController.CreateAppointment();
+                        mainMenuController.OpenMenu();
                         break;
                     case 2:
-                        amc.RemoveAppointment();    
-                        m.OpenMenu();
+                        appointmentMainController.RemoveAppointment();    
+                        mainMenuController.OpenMenu();
                         break;
                     case 3:
-                        amc.PrintFullAppointmentList();
-                        m.OpenMenu();
+                        appointmentMainController.PrintFullAppointmentList();
+                        mainMenuController.OpenMenu();
                         break;
                     case 4:
-                        m.OpenMenu();
+                        mainMenuController.OpenMenu();
                         break;
                     default:
                         MainMenuView.InvalidOptionMessage();

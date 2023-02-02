@@ -4,26 +4,33 @@ using Agenda_Consultorio_Odontologico.view.appointmentInterface;
 
 namespace Agenda_Consultorio_Odontologico.controller.appointment
 {
-    public class AppointmentListController
+    public class AppointmentsController
     {
-        AppointmentListInterface ali = new();
-        AppointmentListMenuInterface almi = new();
+        AppointmentsPrint ali = new();
+        AppointmentsMenu almi = new();
         DateTime start;
         DateTime end;
         bool hasConflit = false;
-        public void PrintFullAppointmentList()
+
+        public AppointmentsController() { }
+
+
+        public void PrintSchedule()
         {
             ali.Title();
             ali.Header();
+
             using var context = new ConsultorioContext();
             var appointments = context.Appointments.ToList();
+
             foreach (Appointment appointment in appointments.OrderBy(x => x.Date))
             {
                 ali.ShowAppointmentsList(appointment);
             }
+
             ali.Footer();
         }
-        public void PrintAppointmentListByPeriod()
+        public void PrintScheduleByPeriod()
         {
             almi.GetDates();
             CheckDates();
@@ -32,8 +39,10 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
             {
                 ali.Title();
                 ali.Header();
+
                 using var context = new ConsultorioContext();
                 var appointments = context.Appointments.ToList();
+
                 foreach (Appointment appointment in appointments.OrderBy(x => x.Date))
                 {
                     if (appointment.Date >= start && appointment.Date <= end)
@@ -41,6 +50,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
                         ali.ShowAppointmentsList(appointment); 
                     }
                 }
+
                 ali.Footer();
             }
         }

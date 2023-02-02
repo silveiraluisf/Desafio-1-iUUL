@@ -6,7 +6,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
     public class PatientValidatorController
     {
-        PatientRegistrationInterface pri = new();
+        PatientForm pri = new();
 
         string name;
         long cpf;

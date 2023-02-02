@@ -1,6 +1,6 @@
 ﻿namespace Agenda_Consultorio_Odontologico.view.appointmentInterface
 {
-    public class CreateAppointmentForm
+    public class AppointmentForm
     {
         public string InputCPF { get; set; }
         public string InputDate { get; set; }

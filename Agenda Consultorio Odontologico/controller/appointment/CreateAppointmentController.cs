@@ -21,7 +21,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
 
         public bool ValidateAppointment()
         {
-            CreateAppointmentForm appointmentForm = new();
+            AppointmentForm appointmentForm = new();
 
             appointmentForm.Form();
 
@@ -52,7 +52,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
         /************************
          * FUNÇÕES DE VALIDAÇÃO *
          ***********************/
-        private void IsPatientCPF(CreateAppointmentForm appointmentForm)
+        private void IsPatientCPF(AppointmentForm appointmentForm)
         {
             List<Patient> list = new();
             bool parseSuccess = long.TryParse(appointmentForm.InputCPF, out long outputCPF);
@@ -83,7 +83,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 IsPatientCPF(appointmentForm);
             }
         }
-        private void IsDate(CreateAppointmentForm appointmentForm)
+        private void IsDate(AppointmentForm appointmentForm)
         {
             DateTime today = DateTime.Today;
             bool parseSuccess = DateTime.TryParse(appointmentForm.InputDate, out DateTime outputDate);
@@ -107,7 +107,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 IsDate(appointmentForm);
             }
         }
-        private void IsStart(CreateAppointmentForm appointmentForm)
+        private void IsStart(AppointmentForm appointmentForm)
         {
             if (appointmentForm.InputStart.Length > 0 && appointmentForm.InputStart.Length < 5)
             {
@@ -134,7 +134,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 IsStart(appointmentForm);
             }            
         }
-        private void IsEnd(CreateAppointmentForm appointmentForm)
+        private void IsEnd(AppointmentForm appointmentForm)
         {
             if (appointmentForm.InputEnd.Length > 0 && appointmentForm.InputEnd.Length < 5)
             {
@@ -170,7 +170,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 IsEnd(appointmentForm);
             }
         }
-        private void IsFutureAppointment(CreateAppointmentForm appointmentForm)
+        private void IsFutureAppointment(AppointmentForm appointmentForm)
         {
             using var context = new ConsultorioContext();
             var appointments = context.Appointments.ToList();
@@ -188,7 +188,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 }
             }
         }
-        private void IsOverlappingAppointment(CreateAppointmentForm appointmentForm)
+        private void IsOverlappingAppointment(AppointmentForm appointmentForm)
         {
             using var context = new ConsultorioContext();
             var appointments = context.Appointments.ToList();
@@ -206,7 +206,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 }
             }
         }
-        private void IsStartHourFormat(CreateAppointmentForm appointmentForm)
+        private void IsStartHourFormat(AppointmentForm appointmentForm)
         {
             char a = appointmentForm.InputStart[2];
             char b = appointmentForm.InputStart[3];            
@@ -232,7 +232,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointmentControllers
                 }
             }
         }
-        private void IsEndHourFormat(CreateAppointmentForm appointmentForm)
+        private void IsEndHourFormat(AppointmentForm appointmentForm)
         {
             char a = appointmentForm.InputEnd[2];
             char b = appointmentForm.InputEnd[3];

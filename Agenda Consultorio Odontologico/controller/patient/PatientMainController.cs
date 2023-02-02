@@ -6,7 +6,7 @@ namespace Agenda_Consultorio_Odontologico.controller.patientControllers
     public class PatientMainController
     {
         PatientValidatorController pvc = new();
-        PatientListInterface pli = new();
+        PatientsPrint pli = new();
         PatientDeleteController pdc = new();
         
         public void AddPatient()
