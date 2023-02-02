@@ -3,7 +3,7 @@ using Agenda_Consultorio_Odontologico.view.patientInterface;
 
 namespace Agenda_Consultorio_Odontologico.controller.patientControllers
 {
-    public class PatientDeleteController
+    public class DeletePatientController
     {
         DeletePatientForm pdi = new();
         public void DeletePatient()

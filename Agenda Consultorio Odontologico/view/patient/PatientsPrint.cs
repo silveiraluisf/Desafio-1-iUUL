@@ -4,12 +4,9 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
 {
     public class PatientsPrint
     {
-        public void Title()
-        {
-            Console.WriteLine("Lista de paciente \n");
-        }
         public void Header()
         {
+            Console.WriteLine("Lista de paciente");
             Console.WriteLine("----------------------------------------------------------");
             Console.WriteLine("CPF          Nome                       Dt.Nasc.     Idade");
             Console.WriteLine("----------------------------------------------------------");

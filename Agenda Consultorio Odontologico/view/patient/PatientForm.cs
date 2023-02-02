@@ -12,6 +12,15 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
         public PatientForm() { }
 
 
+        public void Form()
+        {
+            Console.WriteLine("Insira o nome do cliente: ");
+            this.InputName = Console.ReadLine();
+            Console.WriteLine("Insira o CPF: ");
+            this.InputCPF = Console.ReadLine();
+            Console.WriteLine("Insira da data de nascimento (dd/mm/aaaa): ");
+            this.InputDate = Console.ReadLine();
+        }
         public void GetName()
         {
             Console.WriteLine("Insira o nome do cliente: ");
@@ -27,28 +36,29 @@ namespace Agenda_Consultorio_Odontologico.view.patientInterface
             Console.WriteLine("Insira da data de nascimento (dd/mm/aaaa): ");
             this.InputDate = Console.ReadLine();
         }
+
         public void ShowData()
         {
             Console.WriteLine($"--------------------------------------------");
-            Console.WriteLine($"CPF: {InputCPF}");
-            Console.WriteLine($"Nome: {InputName}");
-            Console.WriteLine($"Data de nascimento: {InputDate} \n");
+            Console.WriteLine($"CPF: {this.InputCPF}");
+            Console.WriteLine($"Nome: {this.InputName}");
+            Console.WriteLine($"Data de nascimento: {this.InputDate} \n");
 
         }
         public void SuccessMessage()
         {
             Console.WriteLine("Paciente cadastrado com sucesso!\n");
         }
+
         public void ErrorMessages(int n)
         {
             this.ErrorList = new List<string>
             {
-                $"Erro no nome: {InputName} -> O nome não pode ser vazio!" ,
-                $"Erro no nome: {InputName} -> O nome deve possuir pelo menos 5 caracteres",
-                $"Erro no CPF: {InputCPF} -> Favor insira um CPF válido (11 caracteres, apenas números).",
-                $"Erro no CPF: {InputCPF} -> O CPF inserido já está cadastrado em outro paciente! Verifique os dados e insira novamente.",
-                $"Erro na data de nascimento: {InputDate} -> O cliente deve ter pelo menos 13 anos!",
-                $"Erro na data de nascimento: { InputDate} -> Favor insira uma data no formato DD,MM,AAAA. ",
+                $"Erro no nome: {this.InputName} -> O nome deve possuir pelo menos 5 caracteres",
+                $"Erro no CPF: {this.InputCPF} -> Favor inserir um CPF válido (11 caracteres, apenas números).",
+                $"Erro no CPF: {this.InputCPF} -> O CPF inserido já está cadastrado em outro paciente! Verifique os dados e insira novamente.",
+                $"Erro na data de nascimento: {this.InputDate} -> Favor inserir uma data válida no formato DD/MM/AAAA.",
+                $"Erro na data de nascimento: {this.InputDate} -> O cliente deve ter pelo menos 13 anos!",
             };
             Console.WriteLine($"{ErrorList[n]}");
         }
