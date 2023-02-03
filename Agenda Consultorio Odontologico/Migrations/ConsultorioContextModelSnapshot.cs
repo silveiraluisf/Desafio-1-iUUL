@@ -75,12 +75,17 @@ namespace AgendaConsultorioOdontologico.Migrations
             modelBuilder.Entity("Agenda_Consultorio_Odontologico.model.Appointment", b =>
                 {
                     b.HasOne("Agenda_Consultorio_Odontologico.model.Patient", "Patient")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("Agenda_Consultorio_Odontologico.model.Patient", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

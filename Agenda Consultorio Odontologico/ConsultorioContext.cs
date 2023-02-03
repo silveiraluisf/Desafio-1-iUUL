@@ -12,5 +12,12 @@ namespace Agenda_Consultorio_Odontologico
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ConsultorioDB;Trusted_Connection=true;");
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Appointment>()
+                .HasOne(appointment => appointment.Patient)
+                .WithMany(patient => patient.Appointments)
+                .HasForeignKey(appointment => appointment.PatientId);           
+        }
     }
 }

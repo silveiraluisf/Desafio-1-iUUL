@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaConsultorioOdontologico.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    [Migration("20230131231056_CPFLong")]
-    partial class CPFLong
+    [Migration("20230201161737_Relacao-app-pat")]
+    partial class Relacaoapppat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,12 +78,17 @@ namespace AgendaConsultorioOdontologico.Migrations
             modelBuilder.Entity("Agenda_Consultorio_Odontologico.model.Appointment", b =>
                 {
                     b.HasOne("Agenda_Consultorio_Odontologico.model.Patient", "Patient")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("Agenda_Consultorio_Odontologico.model.Patient", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,7 +11,7 @@ namespace Agenda_Consultorio_Odontologico.model
         public int PatientId { get; set; }
         public int Time;
         [Required]
-        public Patient Patient { get; internal set; }
+        public virtual Patient Patient { get; internal set; }
         public Appointment()
         {
             Time = End - Start ;

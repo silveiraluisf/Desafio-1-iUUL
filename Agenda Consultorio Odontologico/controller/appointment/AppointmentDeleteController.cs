@@ -10,7 +10,7 @@ namespace Agenda_Consultorio_Odontologico.controller.appointment
         AppointmentDeleteInterface adi = new();
         Appointment? appointment;
         bool hasConflit = false;
-        public void DeletePatient()
+        public void DeleteAppointment()
         {
             adi.GetInformation();
             CheckDate();        

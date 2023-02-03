@@ -10,7 +10,8 @@ namespace Agenda_Consultorio_Odontologico.model
         [Required]
         public long CPF { get; set; }
         [Required]
-        public DateTime BirthDate { get; set; }       
+        public DateTime BirthDate { get; set; }
+        public virtual List<Appointment> Appointments { get; set; }  
         public int Age;
         public Patient()
         {
